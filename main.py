@@ -33,6 +33,7 @@ interval = 10
 def get_gps_data():
     """ Read and parse GPS data from the serial port. """
     gps_data = gps_serial.readline().decode('ascii', errors='replace')
+    print("gps_data = ", gps_data)
     if gps_data.startswith('$GPGGA'):
         parts = gps_data.split(',')
         if len(parts) > 5:
