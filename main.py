@@ -20,7 +20,7 @@ print("Enabled Camera")
 # Setup GPS communication
 
 gps_serial = serial.Serial("/dev/serial0", baudrate=9600, timeout=1)
-print("camera port opened successfully")
+print("gps port opened successfully")
 
 
 # Data storage
@@ -44,7 +44,7 @@ def get_gps_data():
 def capture_image(image_name):
     """ Capture an image using the PiCamera. """
     # camera.capture(image_name)
-    # os.system("sudo raspistill -o " + image_name)
+    os.system("sudo libcamera-still -o " + image_name)
 
 def export_to_excel():
     """ Export stored data to an Excel file. """
