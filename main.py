@@ -28,7 +28,7 @@ print("gps port opened successfully")
 data = []
 
 # Set intervals (e.g., every 10 seconds)
-interval = 10
+interval = 5
 
 def get_gps_data():
     """ Read and parse GPS data from the serial port. """
@@ -69,13 +69,12 @@ try:
         # Capture GPS data
         latitude, longitude = get_gps_data()
 
-        # Capture image
-        image_name = f"image_{timestamp}.jpg"
-        capture_image(image_name)
-
-
         # Store the data
         if latitude and longitude:
+            # Capture image
+            image_name = f"image_{timestamp}.jpg"
+            capture_image(image_name)
+
             print("ADD :: ", timestamp, " lat = ", latitude, " long = ", longitude, " image = ", image_name)
             data.append([timestamp, latitude, longitude, image_name])
 
