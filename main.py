@@ -18,7 +18,11 @@ print("Enabled Camera")
 
 
 # Setup GPS communication
-gps_serial = serial.Serial("/dev/ttyAMA1", baudrate=9600, timeout=1)
+try:
+    gps_serial = serial.Serial("/dev/serial0", baudrate=9600, timeout=1)
+    print("camera port opened successfully")
+except serial.SerialException as e:
+    print(e)
 
 # Data storage
 data = []
