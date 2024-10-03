@@ -7,17 +7,18 @@ import os
 
 # Initialize the camera
 # camera = PiCamera()
+'''
 os.system("sudo pinctrl enable 11")
 os.system("sudo pinctrl write 7 1")
 os.system("sudo i2cset -y 1 0x70 0x00 0x01")
 print("Enabled Camera")
-
+'''
 
 
 
 
 # Setup GPS communication
-gps_serial = serial.Serial("/dev/ttyUSB0", baudrate=9600, timeout=1)
+gps_serial = serial.Serial("/dev/tty0", baudrate=9600, timeout=1)
 
 # Data storage
 data = []
@@ -40,7 +41,7 @@ def get_gps_data():
 def capture_image(image_name):
     """ Capture an image using the PiCamera. """
     # camera.capture(image_name)
-    os.system("sudo raspistill -o " + image_name)
+    # os.system("sudo raspistill -o " + image_name)
 
 def export_to_excel():
     """ Export stored data to an Excel file. """
