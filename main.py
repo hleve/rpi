@@ -36,8 +36,8 @@ def get_gps_data():
         parts = gps_data.split(',')
         if len(parts) > 5:
             # Get latitude and longitude
-            lat = float(parts[2])
-            lon = float(parts[4])
+            lat = parts[2]
+            lon = parts[4]
             return lat, lon
     return None, None
 
@@ -45,6 +45,7 @@ def capture_image(image_name):
     """ Capture an image using the PiCamera. """
     # camera.capture(image_name)
     os.system("sudo libcamera-still -o " + image_name)
+    print("Take picture successfully")
 
 def export_to_excel():
     """ Export stored data to an Excel file. """
@@ -64,8 +65,10 @@ try:
         image_name = f"image_{timestamp}.jpg"
         capture_image(image_name)
 
+
         # Store the data
         if latitude and longitude:
+            print("ADD :: ", timestamp, " lat = ", latitude, " long = ", longitude, " image = ", image_name)
             data.append([timestamp, latitude, longitude, image_name])
 
         # Wait for the next interval
