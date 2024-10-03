@@ -4,6 +4,7 @@ import pandas as pd
 # from picamera import PiCamera
 from datetime import datetime
 import os
+import subprocess
 
 # Initialize the camera
 # camera = PiCamera()
@@ -44,8 +45,14 @@ def get_gps_data():
 def capture_image(image_name):
     """ Capture an image using the PiCamera. """
     # camera.capture(image_name)
-    os.system("sudo libcamera-still -o " + image_name)
-    print("Take picture successfully")
+    # os.system("sudo libcamera-still -o " + image_name)
+    # print("Take picture successfully")
+    result = subprocess.run(["libcamera-still", "-o", "imgs/" + image_name], capture_output=True, text=True)
+    if result.returncode == 0:
+        print("Image captured successfully!")
+    else:
+        print(f"Failed to capture image: {result.stderr}")
+
 
 def export_to_excel():
     """ Export stored data to an Excel file. """
